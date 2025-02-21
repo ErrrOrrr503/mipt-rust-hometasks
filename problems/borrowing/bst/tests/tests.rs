@@ -46,6 +46,7 @@ fn contains() {
     assert!(!map.contains_key(&4));
 }
 
+
 #[test]
 fn remove() {
     let mut map = AVLTreeMap::new();
@@ -67,12 +68,17 @@ fn remove() {
     assert!(map.is_empty());
 }
 
+
 #[test]
 fn test_nth() {
     let mut map = AVLTreeMap::<u8, u8>::new();
     assert_eq!(map.insert(2, 2), None);
     assert_eq!(map.insert(1, 1), None);
     assert_eq!(map.insert(3, 3), None);
+
+    assert_eq!(map.nth_key_value(0), Some((&1, &1)));
+    assert_eq!(map.nth_key_value(1), Some((&2, &2)));
+    assert_eq!(map.nth_key_value(2), Some((&3, &3)));
 
     assert_eq!(map.remove_entry(&2), Some((2, 2)));
     assert_eq!(map.insert(2, 2), None);

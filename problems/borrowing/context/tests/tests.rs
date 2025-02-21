@@ -88,3 +88,12 @@ fn wrong_type() {
     cx.insert("greeter", Greeter {});
     cx.get::<usize>("greeter");
 }
+
+#[test]
+fn cross_scope() {
+    let mut cx = Context::new();
+    {
+        cx.insert("greeter", Greeter {});
+    }
+    cx.get::<Greeter>("greeter");
+}
